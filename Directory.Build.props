@@ -1,0 +1,5 @@
+<Project>
+	<PropertyGroup Label="DevExpress">
+		<DevExpressVersion>21.2</DevExpressVersion>
+	</PropertyGroup>
+</Project>
