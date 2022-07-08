@@ -9,14 +9,23 @@
     <Description>A template to create a new XAF blazor application</Description>
     <PackageTags>dotnet-new;DevExpress;XAF;BLazor</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
-
     <IncludeContentInPack>true</IncludeContentInPack>
     <IncludeBuildOutput>false</IncludeBuildOutput>
     <ContentTargetFolders>content</ContentTargetFolders>
+    <PackageProjectUrl>https://github.com/egarim/XafBlazorAndApiDotNetNew</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/egarim/XafBlazorAndApiDotNetNew</RepositoryUrl>
   </PropertyGroup>
+<PropertyGroup>
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+</PropertyGroup>
 
+<ItemGroup>
+    <None Include="LICENSE.txt" Pack="true" PackagePath=""/>
+</ItemGroup>
   <ItemGroup>
-    <Content Include="**\*" Exclude="template.csproj;template.json;Template.Blazor.Server\bin\**;Template.Module\bin\**;Template.Module.Blazor\bin\**" />
+    <Content Include="**\*"
+     Exclude="template.csproj;template.json;Template.Blazor.Server\bin\**;Template.Module\bin\**;Template.Module.Blazor\bin\**;.git\**;.cr\**;.vs\**;Pack.bat;template.csproj;README.md" 
+    />
     <Compile Remove="**\*" />
   </ItemGroup>
 

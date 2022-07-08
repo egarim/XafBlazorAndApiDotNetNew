@@ -3,7 +3,7 @@
   "author": "Jose Manuel Ojeda Melgar (Joche Ojeda)",
   "classifications": [ "XAF", "Blazor" ],
   "identity": "Xaf.Blazor.CSharp",
-  "name": "A XAF blazor app including all modules",
+  "name": "A XAF blazor app including using XPO and all modules",
   "shortName": "XafBLazor",
   "sourceName": "Template",
   "preferNameDirectory": true
