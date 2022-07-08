@@ -4,7 +4,7 @@
   "classifications": [ "XAF", "Blazor" ],
   "identity": "Xaf.Blazor.CSharp",
   "name": "A XAF blazor app including using XPO and all modules",
-  "shortName": "XafBLazor",
+  "shortName": "XafBlazor",
   "sourceName": "Template",
   "preferNameDirectory": true
 }

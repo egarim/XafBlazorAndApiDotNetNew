@@ -24,7 +24,7 @@
 </ItemGroup>
   <ItemGroup>
     <Content Include="**\*"
-     Exclude="template.csproj;template.json;Template.Blazor.Server\bin\**;Template.Module\bin\**;Template.Module.Blazor\bin\**;.git\**;.cr\**;.vs\**;Pack.bat;template.csproj;README.md" 
+     Exclude="template.csproj;template.json;Template.Blazor.Server\*.db;Template.Blazor.Server\bin\**;Template.Module\bin\**;Template.Module.Blazor\bin\**;.git\**;.cr\**;.vs\**;Pack.bat;template.csproj;README.md" 
     />
     <Compile Remove="**\*" />
   </ItemGroup>
