@@ -18,6 +18,36 @@
 		],
 		"description": "Create a persistent propert witht he correct setter and getter"
 	},
+	"Create collection with association": {
+		"scope": "csharp",
+		"prefix": "xpcl",
+		"body": [
+			"        [Association(\"${3:Object}-$1\")]",
+			"        public XPCollection<${2:object}> ${1:PropertyName}",
+			"        {",
+			"            get",
+			"            {",
+			"                return GetCollection<$2>(nameof($1));",
+			"            }",
+			"        }",
+		],
+		"description": "Use this snippet to create a collection that represents the many on the one side"
+	},
+	"Create a property with the association attribute": {
+		"scope": "csharp",
+		"prefix": "xpa",
+		"body": [
+			"        $1 _$1;",
+			"",
+			"        [Association(\"$2-${3:Object}s\")]",
+			"        public ${2:object} ${1:PropertyName}",
+			"        {",
+			"            get => _$1);",
+			"            set => SetPropertyValue(nameof($1)), ref _$1), value);",
+			"        }",
+		],
+		"description": "Create a persistent propert witht he correct setter and getter"
+	},
 	"Create domain object": {
 		"scope": "csharp",
 		"prefix": "xdom",
@@ -62,7 +92,7 @@
 			"}",
 			
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XAF domain object (XPO)"
 	},
 	"Create ViewController": {
 		"scope": "csharp",
@@ -104,7 +134,7 @@
 			"}",
 
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XAF view controller"
 	},
 	"Create WindowController": {
 		"scope": "csharp",
@@ -141,7 +171,7 @@
 			"}",
 
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XAF window controller"
 	},
 	"Create XAF SimpleAction": {
 		"scope": "csharp",
@@ -156,7 +186,7 @@
 			"}",
 			"#endregion",
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XPO propertyu with XPO special setter"
 	},
 	"Create XAF SingleChoiceAction": {
 		"scope": "csharp",
@@ -176,7 +206,7 @@
 			"}",
 			"#endregion",
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XAF simple action"
 	},
 	"Create XAF ParametrizedAction": {
 		"scope": "csharp",
@@ -192,7 +222,7 @@
 			"}",
 			"#endregion",
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XAF parametrized action"
 	},
 	"Create XAF PopupWindowShowAction": {
 		"scope": "csharp",
@@ -229,6 +259,6 @@
 			"}",
 			"#endregion",
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Use this snippet to create a XAF PopupWindowShowAction"
 	},
 }
