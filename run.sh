@@ -1,2 +1,2 @@
 #!/bin/bash
-dotnet run /Template.Blazor.Server/Template.Blazor.Server.csproj
+dotnet run --project ./Template.Blazor.Server/Template.Blazor.Server.csproj
