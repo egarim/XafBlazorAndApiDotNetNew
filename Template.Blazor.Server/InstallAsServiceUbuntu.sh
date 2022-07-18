@@ -1,8 +1,5 @@
 #!/bin/bash
-# how to call the script  ./InstallApp.sh 192.168.122.166 joche /home/joche/ SimpleBlazor
-#TODO how to read passwords https://stackoverflow.com/questions/12202587/automatically-enter-ssh-password-with-script
-# print variable on a screen
-#sudo ./remote.sh 192.168.122.154 joche /home/joche/ RemoteSudo.Blazor.Server 
+
 DeletePublishingFiles() 
 {
       #deleting publish dir and tar file
@@ -17,10 +14,16 @@ DeletePublishingFiles()
     echo deleting release.tar.gz
     rm release.tar.gz
     fi
+    
+    if test -f install_${AppName}.sh
+    then
+    echo deleting install_${AppName}.sh
+    rm install_${AppName}.sh
+    fi
 }
 function CreateServiceFile()
 {
-  #contact variables https://stackoverflow.com/questions/4181703/how-to-concatenate-string-variables-in-bash
+
   servicefilepath="app_${AppName}/${AppName}.service"
   touch $servicefilepath
   echo '[Unit]' >> $servicefilepath
@@ -48,7 +51,7 @@ function CreateServiceFile()
 }
 function CreateStatusFile()
 {
-  #contact variables https://stackoverflow.com/questions/4181703/how-to-concatenate-string-variables-in-bash
+  
   statusfilepath="status_${AppName}.sh"
   touch $statusfilepath
   servicestatuscommand="sudo systemctl status ${AppName}.service"
@@ -88,14 +91,21 @@ function CreateInstallScript()
   echo $aptupdate >> $installscriptfile
   echo $libgdiplus >> $installscriptfile
   echo $chmodcommand >> $installscriptfile
-  echo "echo Do you want to update or create the database and schema [y/n]" >> $installscriptfile
-  echo -e "read update\nif [[ \$update\ == \"y\" ]]\nthen\necho updating database\n./app_${AppName}/${AppName} --updateDatabase\nfi" >> $installscriptfile
   echo $copyservicecommand >> $installscriptfile
   echo $enablecommand >> $installscriptfile
+  if [[ $UpdateCreateSchema == "y" ]]
+  then
+    echo "echo update or create the database and schema y/n" >> $installscriptfile
+    echo "cd app_${AppName}" >> $installscriptfile
+    echo "./${AppName} --updateDatabase" >> $installscriptfile
+  fi
+ 
+ 
   echo $startservicecommand >> $installscriptfile
   echo $servicestatuscommand >> $installscriptfile
   
 }
+
 
 function CompileApp()
 {
@@ -113,19 +123,25 @@ function CreateTarFile()
   
 }
 
-
+UpdateCreateSchema="n"
+if [[ $4 == "y" ]]
+then
+  UpdateCreateSchema="y"
+fi
 
 echo Installation information
 echo AppName:Template.Blazor.Server
 echo Ip:$1
 echo User:$2
 echo Remote path:$3
+echo Create/update schema:$UpdateCreateSchema
 echo The install process will start using the information above, press y to continue
 
 AppName=Template.Blazor.Server
 Ip=$1
 User=$2
 RemotePath=$3
+
 
 read install
 
@@ -135,6 +151,7 @@ then
   exit 0
 fi
 
+#todo move this to prerequisites
 #ssh pass https://www.middlewareinventory.com/blog/shell-script-to-ssh-multiple-servers-with-password/
 #apt install sshpass
 
