@@ -10,6 +10,7 @@ using DevExpress.ExpressApp.Blazor.Services;
 using DevExpress.ExpressApp.Design;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -48,6 +49,15 @@ namespace Template.Blazor.Server {
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
                 .ConfigureWebHostDefaults(webBuilder => {
+                    var config = new ConfigurationBuilder()
+                    .SetBasePath(Directory.GetCurrentDirectory())
+                    .AddJsonFile("hosting.json", optional: true)
+                    .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+                    .AddCommandLine(args)
+                    .AddEnvironmentVariables()
+                    .Build();
+
+                    webBuilder.UseUrls(config["server.urls"]);
                     webBuilder.UseStartup<Startup>();
                 });
         XafApplication IDesignTimeApplicationFactory.Create() {

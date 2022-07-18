@@ -6,6 +6,8 @@ This repo contains the source code of a XAF Blazor application template for the 
 - A XAF Blazor Application
 - XAF API project
 - Bash script to run the app
+- Bash script to publish and monitor the app as as service as shown here https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-apache?view=aspnetcore-6.0#monitor-the-app
+- hosting.json file to easily configure listening address
 - VS Code snippets 
 - xdom: Template for XAF domain objects
 - xprop: Template for persistent properties
@@ -36,3 +38,25 @@ To use bash scripts, you should change the permission of the bash script files a
 chmod +x run.sh
 ```
 repeat the process for each .sh file
+
+###### To publish and monitor the app
+
+Go to your Xaf Blazor app folder and run the following command in the console
+
+```<language>
+
+./InstallAsServiceUbuntu.sh 192.168.122.154 UserInRemoteServer /path/to/the/app
+
+```
+
+Example
+this is how the command should look like
+
+```<language>
+
+./InstallAsServiceUbuntu.sh 192.168.122.154 joche /home/joche
+
+```
+
+
+

@@ -11,4 +11,4 @@ rem end of the script
 
 dotnet pack Template.csproj --output %USERPROFILE%\Documents\MyNugets\
 dotnet new --uninstall Xaf.Blazor
-dotnet new -i %USERPROFILE%\Documents\MyNugets\Xaf.Blazor.1.0.1.nupkg
+dotnet new -i %USERPROFILE%\Documents\MyNugets\Xaf.Blazor.1.0.2.nupkg
