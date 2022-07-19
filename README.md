@@ -44,17 +44,24 @@ repeat the process for each .sh file
 Go to your Xaf Blazor app folder and run the following command in the console
 
 ```<language>
-
-./InstallAsServiceUbuntu.sh 192.168.122.154 UserInRemoteServer /path/to/the/app
+cd MyApp.Blazor.Server
+./InstallAsServiceUbuntu.sh 192.168.122.154 UserInRemoteServer /path/to/the/app y
 
 ```
+
+###### Paramters
+
+1. IP of the target server
+2. User in the remote server
+3. Path where to deploy the app
+4. Update or create the database/schema
 
 Example
 this is how the command should look like
 
 ```<language>
 
-./InstallAsServiceUbuntu.sh 192.168.122.154 joche /home/joche
+./InstallAsServiceUbuntu.sh 192.168.122.154 joche /home/joche y
 
 ```
 
