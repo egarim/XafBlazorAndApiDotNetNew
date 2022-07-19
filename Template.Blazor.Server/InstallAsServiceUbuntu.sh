@@ -76,8 +76,7 @@ function CreateRemoveScript()
 }
 function CreateInstallScript()
 {
-  #contact variables https://stackoverflow.com/questions/4181703/how-to-concatenate-string-variables-in-bash
-  #installscriptfile="app_${AppName}/install.sh"
+  
   installscriptfile="install_${AppName}.sh"
   touch $installscriptfile
   aptupdate="sudo apt-get update -y";
@@ -95,7 +94,7 @@ function CreateInstallScript()
   echo $enablecommand >> $installscriptfile
   if [[ $UpdateCreateSchema == "y" ]]
   then
-    echo "echo update or create the database and schema y/n" >> $installscriptfile
+    echo "echo Running database updater..." >> $installscriptfile
     echo "cd app_${AppName}" >> $installscriptfile
     echo "./${AppName} --updateDatabase" >> $installscriptfile
   fi
