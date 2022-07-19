@@ -59,6 +59,20 @@ function CreateStatusFile()
   
   
 }
+function CreateStopScript()
+{
+  stopscript="stop_${AppName}.sh"
+  touch $stopscript
+  command="sudo systemctl stop ${AppName}.service"
+  echo $command >> $stopscript
+}
+function CreateStartScript()
+{
+  startscript="start_${AppName}.sh"
+  touch $startscript
+  command="sudo systemctl start ${AppName}.service"
+  echo $command >> $startscript
+}
 function CreateRemoveScript()
 {
   removescript="remove_${AppName}.sh"
@@ -120,9 +134,14 @@ function CreateTarFile()
   chmod +x remove_${AppName}.sh
   chmod +x install_${AppName}.sh
   chmod +x status_${AppName}.sh
-  tar -czf release.tar.gz app_$AppName remove_${AppName}.sh install_${AppName}.sh status_${AppName}.sh
+  chmod +x start_${AppName}.sh
+  chmod +x stop_${AppName}.sh
+  tar -czf release.tar.gz app_$AppName remove_${AppName}.sh install_${AppName}.sh status_${AppName}.sh start_${AppName}.sh stop_${AppName}.sh
   rm remove_${AppName}.sh
   rm install_${AppName}.sh
+  rm status_${AppName}.sh
+  rm start_${AppName}.sh
+  rm stop_${AppName}.sh
   
 }
 
@@ -164,6 +183,8 @@ read -s rmtpasswrd
 
 DeletePublishingFiles
 CompileApp
+CreateStartScript
+CreateStopScript
 CreateRemoveScript
 CreateServiceFile
 CreateInstallScript
