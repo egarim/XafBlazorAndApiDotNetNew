@@ -36,6 +36,8 @@ dotnet new XafBlazor -o MyAppName
 To use bash scripts, you should change the permission of the bash script files as shown below
 ```<language>
 chmod +x run.sh
+cd MyApp.Blazor.Server
+chmod +x InstallAsServiceUbuntu.sh
 ```
 repeat the process for each .sh file
 
@@ -45,15 +47,17 @@ Go to your Xaf Blazor app folder and run the following command in the console
 
 ```<language>
 cd MyApp.Blazor.Server
+
 ./InstallAsServiceUbuntu.sh 192.168.122.154 UserInRemoteServer /path/to/the/app y
 
 ```
 
-###### Paramters
+
+###### Parameters
 
 1. IP of the target server
 2. User in the remote server
-3. Path where to deploy the app
+3. Path to deploy the app
 4. Update or create the database/schema
 
 Example
