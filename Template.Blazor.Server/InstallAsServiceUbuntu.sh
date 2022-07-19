@@ -97,6 +97,10 @@ function CreateInstallScript()
     echo "echo Running database updater..." >> $installscriptfile
     echo "cd app_${AppName}" >> $installscriptfile
     echo "./${AppName} --updateDatabase" >> $installscriptfile
+    echo "echo trying to change ownership of the database,this will fail if you are not using the default sqlite connection string" >> $installscriptfile
+    echo "cd .." >> $installscriptfile
+    echo "chown $User $DatabaseName" >> $installscriptfile
+
   fi
  
  
@@ -140,6 +144,7 @@ AppName=Template.Blazor.Server
 Ip=$1
 User=$2
 RemotePath=$3
+DatabaseName=Template.db
 
 
 read install
