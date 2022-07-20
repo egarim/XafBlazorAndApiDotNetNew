@@ -20,6 +20,7 @@ DeletePublishingFiles()
     echo deleting install_${AppName}.sh
     rm install_${AppName}.sh
     fi
+
 }
 function CreateServiceFile()
 {
@@ -59,20 +60,6 @@ function CreateStatusFile()
   
   
 }
-function CreateStopScript()
-{
-  stopscript="stop_${AppName}.sh"
-  touch $stopscript
-  command="sudo systemctl stop ${AppName}.service"
-  echo $command >> $stopscript
-}
-function CreateStartScript()
-{
-  startscript="start_${AppName}.sh"
-  touch $startscript
-  command="sudo systemctl start ${AppName}.service"
-  echo $command >> $startscript
-}
 function CreateRemoveScript()
 {
   removescript="remove_${AppName}.sh"
@@ -106,24 +93,56 @@ function CreateInstallScript()
   echo $chmodcommand >> $installscriptfile
   echo $copyservicecommand >> $installscriptfile
   echo $enablecommand >> $installscriptfile
-  if [[ $UpdateCreateSchema == "y" ]]
-  then
-    echo "echo Running database updater..." >> $installscriptfile
-    echo "cd app_${AppName}" >> $installscriptfile
-    echo "./${AppName} --updateDatabase" >> $installscriptfile
-    echo "echo trying to change ownership of the database,this will fail if you are not using the default sqlite connection string" >> $installscriptfile
-    echo "cd .." >> $installscriptfile
-    echo "chown $User $DatabaseName" >> $installscriptfile
-
-  fi
+ # if [[ $UpdateCreateSchema == "y" ]]
+ # then
+ #   echo "echo Running database updater..." >> $installscriptfile
+ #   echo "cd app_${AppName}" >> $installscriptfile
+ #   echo "./${AppName} --updateDatabase" >> $installscriptfile
+ #   echo "echo trying to change ownership of the database,this will fail if you are not using the default sqlite connection string" >> $installscriptfile
+ #   echo "cd .." >> $installscriptfile
+ #   echo "echo changing owner to $User" >> $installscriptfile
+ #   echo "chown $User $DatabaseName" >> $installscriptfile
+ #   echo "echo adding read write permissions to $User" >> $installscriptfile
+ #   echo "chmod +rwx $DatabaseName" >> $installscriptfile
+ #fi
  
  
   echo $startservicecommand >> $installscriptfile
   echo $servicestatuscommand >> $installscriptfile
   
 }
-
-
+function CreateDbUpdateScript()
+{
+  
+  dbupdatescriptfile="dbupdate_${AppName}.sh"
+  touch $dbupdatescriptfile
+  echo "echo Running database updater..." >> $dbupdatescriptfile
+  echo "cd app_${AppName}" >> $dbupdatescriptfile
+  echo "./${AppName} --updateDatabase" >> $dbupdatescriptfile
+  echo "echo trying to change ownership of the database,this will fail if you are not using the default sqlite connection string" >> $dbupdatescriptfile
+  echo "cd .." >> $dbupdatescriptfile
+  echo "echo changing owner to $User" >> $dbupdatescriptfile
+  echo "chown $User $DatabaseName" >> $dbupdatescriptfile
+  echo "echo adding read write permissions to $User" >> $dbupdatescriptfile
+  echo "chmod +rwx $DatabaseName" >> $dbupdatescriptfile
+ 
+  
+  
+}
+function CreateStopScript()
+{
+  stopscript="stop_${AppName}.sh"
+  touch $stopscript
+  command="sudo systemctl stop ${AppName}.service"
+  echo $command >> $stopscript
+}
+function CreateStartScript()
+{
+  startscript="start_${AppName}.sh"
+  touch $startscript
+  command="sudo systemctl start ${AppName}.service"
+  echo $command >> $startscript
+}
 function CompileApp()
 {
   dotnet publish -c Release -r ubuntu-x64 --self-contained=true /p:PublishSingleFile=false --output app_$AppName
@@ -136,12 +155,17 @@ function CreateTarFile()
   chmod +x status_${AppName}.sh
   chmod +x start_${AppName}.sh
   chmod +x stop_${AppName}.sh
-  tar -czf release.tar.gz app_$AppName remove_${AppName}.sh install_${AppName}.sh status_${AppName}.sh start_${AppName}.sh stop_${AppName}.sh
+  chmod +x dbupdate_${AppName}.sh
+
+  tar -czf release.tar.gz app_$AppName remove_${AppName}.sh install_${AppName}.sh status_${AppName}.sh start_${AppName}.sh stop_${AppName}.sh dbupdate_${AppName}.sh
+  
   rm remove_${AppName}.sh
   rm install_${AppName}.sh
   rm status_${AppName}.sh
   rm start_${AppName}.sh
   rm stop_${AppName}.sh
+  rm dbupdate_${AppName}.sh
+
   
 }
 
@@ -183,6 +207,7 @@ read -s rmtpasswrd
 
 DeletePublishingFiles
 CompileApp
+CreateDbUpdateScript
 CreateStartScript
 CreateStopScript
 CreateRemoveScript
@@ -201,5 +226,6 @@ echo
 sshpass -p$rmtpasswrd ssh $User@$Ip tar -xvzf $3/release.tar.gz 
 
 echo the remote password will be ask one more time to install the app as a service
+sshpass -p$rmtpasswrd ssh -t $User@$Ip "$3/dbupdate_${AppName}.sh"
 sshpass -p$rmtpasswrd ssh -t $User@$Ip "sudo $3/install_${AppName}.sh"
 
