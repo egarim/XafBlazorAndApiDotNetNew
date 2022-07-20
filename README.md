@@ -69,5 +69,20 @@ this is how the command should look like
 
 ```
 
+###### Prerequisites to deploy from linux or wsl
 
+To install from ubuntu you need to have sshpass installed 
+
+```<language>
+apt install sshpass
+```
+
+###### Deploying from WSL 1 or 2
+there is a problem in the gzip library in wsl 1 and 2 to fix it you need to run the following command
+
+```<language>
+echo -en '\x10' | sudo dd of=/usr/bin/gzip count=1 bs=1 conv=notrunc seek=$((0x189))
+```
+more information in the following link
+https://github.com/microsoft/vscode-remote-release/issues/6704
 
