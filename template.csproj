@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.2.1/PackageVersion>
+    <PackageVersion>1.0.2.1</PackageVersion>
     <PackageId>Xaf.Blazor</PackageId>
     <Title>Xaf Blazor Template</Title>
     <Authors>Joche Ojeda</Authors>
