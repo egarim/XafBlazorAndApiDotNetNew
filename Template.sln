@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template.Blazor.Server", "T
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CA1C621-A9C1-4143-90CC-C63AD45B7A69}"
 	ProjectSection(SolutionItems) = preProject
+		CHANGELOG.MD = CHANGELOG.MD
 		Directory.Build.props = Directory.Build.props
 		README.md = README.md
 		run.sh = run.sh

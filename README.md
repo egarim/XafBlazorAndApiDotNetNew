@@ -13,8 +13,8 @@ This repo contains the source code of a XAF Blazor application template for the 
 - xprop: Template for persistent properties
 - xpcl: XPCollection with association attribute (for the one side)
 - xpa: Persistent property with association attribute (for the many side)
-- xvc: Template for a XAF view controller
-- xvw: Template for a windows controller
+- xcv: Template for a XAF view controller
+- xcw: Template for a windows controller
 - xas: Simple action
 - xac: Single choice action
 - xap: Parametrized action

@@ -213,7 +213,7 @@
 		"prefix": "xap",
 		"body": [
 			"#region $1",
-			"ParametrizedAction ${1:ParametrizedAction} = new ParametrizedAction(this, \"$1\", \"View\", typeof(${2|string,int,double,DateTime|}));",
+			"ParametrizedAction ${1:ParametrizedAction} = new ParametrizedAction(this, \"$1\", \"View\", typeof(${2|string,int,double,DateTime,bool,decimal,FileData,Guid,object|}));",
 			"$1.Execute += $1_Execute;",
 			"void $1_Execute(object $1_sender, ParametrizedActionExecuteEventArgs $1_e)",
 			"{",
