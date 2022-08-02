@@ -5,4 +5,9 @@
 	<PropertyGroup Label="DevExpress">
 		<DevExpressVersion>21.2.3</DevExpressVersion>
 	</PropertyGroup>
+  <PropertyGroup Label="DatabaseProviders">
+    <Mysql>8.0.30</Mysql>
+    <Postgres>6.0.5</Postgres>
+    <SQLite>1.0.116</SQLite>
+  </PropertyGroup>
 </Project>

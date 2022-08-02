@@ -2,11 +2,11 @@
 
   <PropertyGroup>
     <PackageType>Template</PackageType>
-    <PackageVersion>1.0.2.1</PackageVersion>
+    <PackageVersion>1.0.3/PackageVersion>
     <PackageId>Xaf.Blazor</PackageId>
     <Title>Xaf Blazor Template</Title>
     <Authors>Joche Ojeda</Authors>
-    <Description>A template to create a new XAF blazor application</Description>
+    <Description>A template to create a new XAF blazor application using dotnet CLI</Description>
     <PackageTags>dotnet-new;DevExpress;XAF;BLazor</PackageTags>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IncludeContentInPack>true</IncludeContentInPack>

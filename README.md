@@ -19,6 +19,8 @@ This repo contains the source code of a XAF Blazor application template for the 
 - xac: Single choice action
 - xap: Parametrized action
 - xapw: Popup window show action 
+- xpas: XPO size attribute
+- xmd: XAF ModelDefault attribute
 
 ###### How to install
 

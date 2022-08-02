@@ -6,19 +6,35 @@
 	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
 	// Placeholders with the same ids are connected.
 	// Example:
-	"Create persistent property": {
+	"Creates persistent property": {
 		"scope": "csharp",
 		"prefix": "xprop",
 		"body": [
-			"private ${2|object,string,int,double,decimal|} _$1;",
+			"private ${2|object,string,int,double,decimal,bool,FileData,Guid|} _$1;",
 			"public $2 ${1:PropertyName} {",
 			"     get { return _$1; }",
 		    "     set { SetPropertyValue(nameof($1), ref _$1, value); }",
 			"}"
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Creates a persistent propert witht he correct setter and getter"
 	},
-	"Create collection with association": {
+	"Creates a ModelDefault attribute": {
+		"scope": "csharp",
+		"prefix": "xmd",
+		"body": [
+			"[ModelDefault(\"$1\",\"$2\")]"
+		],
+		"description": "Creates a persistent propert witht he correct setter and getter"
+	},
+	"Creates an XPO size attribute attribute": {
+		"scope": "csharp",
+		"prefix": "xpas",
+		"body": [
+			"[Size(SizeAttribute.$(1|DefaultStringMappingFieldSize,Unlimited|)]"
+		],
+		"description": "Creates a persistent propert witht he correct setter and getter"
+	},
+	"Creates collection with association": {
 		"scope": "csharp",
 		"prefix": "xpcl",
 		"body": [
@@ -31,9 +47,9 @@
 			"    }",
 			"}",
 		],
-		"description": "Use this snippet to create a collection that represents the many on the one side"
+		"description": "Use this snippet to Creates a collection that represents the many on the one side"
 	},
-	"Create a property with the association attribute": {
+	"Creates a property with the association attribute": {
 		"scope": "csharp",
 		"prefix": "xpa",
 		"body": [
@@ -46,9 +62,9 @@
 			"    set => SetPropertyValue(nameof($1), ref _$1, value);",
 			"}",
 		],
-		"description": "Create a persistent propert witht he correct setter and getter"
+		"description": "Creates a persistent propert witht he correct setter and getter"
 	},
-	"Create domain object": {
+	"Creates a XAF domain object": {
 		"scope": "csharp",
 		"prefix": "xdom",
 		"body": [
@@ -94,7 +110,7 @@
 		],
 		"description": "Use this snippet to create a XAF domain object (XPO)"
 	},
-	"Create ViewController": {
+	"Creates a XAF ViewController": {
 		"scope": "csharp",
 		"prefix": "xcv",
 		"body": [
@@ -136,7 +152,7 @@
 		],
 		"description": "Use this snippet to create a XAF view controller"
 	},
-	"Create WindowController": {
+	"Creates WindowController": {
 		"scope": "csharp",
 		"prefix": "xcw",
 		"body": [
@@ -173,7 +189,7 @@
 		],
 		"description": "Use this snippet to create a XAF window controller"
 	},
-	"Create XAF SimpleAction": {
+	"Creates a XAF SimpleAction": {
 		"scope": "csharp",
 		"prefix": "xas",
 		"body": [
@@ -186,9 +202,9 @@
 			"}",
 			"#endregion",
 		],
-		"description": "Use this snippet to create a XPO propertyu with XPO special setter"
+		"description": "Use this snippet to create a XAF simple action"
 	},
-	"Create XAF SingleChoiceAction": {
+	"Creates a XAF SingleChoiceAction": {
 		"scope": "csharp",
 		"prefix": "xac",
 		"body": [
@@ -206,14 +222,14 @@
 			"}",
 			"#endregion",
 		],
-		"description": "Use this snippet to create a XAF simple action"
+		"description": "Use this snippet to create a XAF single choice action"
 	},
-	"Create XAF ParametrizedAction": {
+	"Creates XAF ParametrizedAction": {
 		"scope": "csharp",
 		"prefix": "xap",
 		"body": [
 			"#region $1",
-			"ParametrizedAction ${1:ParametrizedAction} = new ParametrizedAction(this, \"$1\", \"View\", typeof(${2|string,int,double,DateTime,bool,decimal,FileData,Guid,object|}));",
+			"ParametrizedAction ${1:ParametrizedAction} = new ParametrizedAction(this, \"$1\", \"View\", typeof(${2|string,int,double,DateTime|}));",
 			"$1.Execute += $1_Execute;",
 			"void $1_Execute(object $1_sender, ParametrizedActionExecuteEventArgs $1_e)",
 			"{",
@@ -224,7 +240,7 @@
 		],
 		"description": "Use this snippet to create a XAF parametrized action"
 	},
-	"Create XAF PopupWindowShowAction": {
+	"Creates XAF PopupWindowShowAction": {
 		"scope": "csharp",
 		"prefix": "xapw",
 		"body": [
