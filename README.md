@@ -2,6 +2,9 @@
 
 This repo contains the source code of a XAF Blazor application template for the dotnet CLI, the idea behind this template is to make easier the development of XAF applications in non-Windows environments like Linux or macOS
 
+###### What's new 
+- Take a look to the [Change log](https://github.com/egarim/XafBlazorAndApiDotNetNew/blob/master/CHANGELOG.MD)
+
 ###### What is included?
 - A XAF Blazor Application
 - XAF API project
@@ -88,3 +91,7 @@ echo -en '\x10' | sudo dd of=/usr/bin/gzip count=1 bs=1 conv=notrunc seek=$((0x1
 more information in the following link
 https://github.com/microsoft/vscode-remote-release/issues/6704
 
+
+##### Learn more
+
+[Xaf Blazor template videos on youtube](https://www.youtube.com/watch?v=oUCnvFCAbBE&list=PL13vpJQShMUeTB7Vd3MN1bDdBuebGjP5a)
